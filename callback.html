@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>TikTok 授权回调</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial,"Microsoft YaHei",sans-serif;max-width:640px;margin:60px auto;padding:0 20px;color:#222;background:#fafafa;text-align:center}
+.card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:28px;margin:20px 0}
+code{display:block;background:#222;color:#0f0;padding:14px;border-radius:8px;font-size:14px;word-break:break-all;margin:14px 0;text-align:left}
+button{background:#ff2d6e;color:#fff;border:0;padding:12px 26px;border-radius:8px;font-size:15px;cursor:pointer}
+.err{color:#c00}
+</style>
+</head>
+<body>
+<h2>TikTok 授权回调</h2>
+<div class="card" id="ok" style="display:none">
+  <p>授权成功!请把下面的 code 复制回命令行窗口(按回车处):</p>
+  <code id="code"></code>
+  <button onclick="copyCode()">一键复制 code</button>
+  <p id="copied" style="color:#0a0"></p>
+</div>
+<div class="card err" id="err" style="display:none">
+  <p>未读取到 code 参数。请确认是从 TikTok 授权页跳转过来的。</p>
+</div>
+<script>
+const qs = new URLSearchParams(location.search);
+const code = qs.get('code');
+if (code) {
+  document.getElementById('ok').style.display = '';
+  document.getElementById('code').textContent = code;
+  document.title = '授权成功 - 复制 code';
+} else {
+  document.getElementById('err').style.display = '';
+}
+function copyCode() {
+  navigator.clipboard.writeText(code).then(() => {
+    document.getElementById('copied').textContent = '已复制!回到命令行粘贴并回车';
+  });
+}
+</script>
+</body>
+</html>
