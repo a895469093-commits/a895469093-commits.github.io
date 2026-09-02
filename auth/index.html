@@ -2,47 +2,36 @@
 <html lang="zh">
 <head>
 <meta charset="utf-8">
-<title>AiDelly 账号授权</title>
+<title>TikTok 账号扫码授权</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 body{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#111128,#232355);padding:20px}
-.card{background:#fff;border-radius:18px;padding:34px 28px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.35);text-align:center}
-.logo{width:52px;height:52px;border-radius:14px;background:#ff2d6e;color:#fff;font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
-h1{font-size:20px;color:#1a1a2e;margin-bottom:8px}
-.acct{font-size:15px;color:#555;background:#f4f5fa;border-radius:10px;padding:12px;margin:16px 0}
-.acct b{color:#ff2d6e;font-size:17px}
-ol{text-align:left;color:#666;font-size:13px;line-height:1.9;margin:14px 0 20px;padding-left:20px}
-.btn{display:block;width:100%;padding:15px;border:none;border-radius:12px;background:#ff2d6e;color:#fff;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none}
+.card{background:#fff;border-radius:18px;padding:36px 30px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.35);text-align:center}
+.logo{width:54px;height:54px;border-radius:14px;background:#ff2d6e;color:#fff;font-weight:800;font-size:27px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+h1{font-size:20px;color:#1a1a2e;margin-bottom:6px}
+.sub{font-size:13px;color:#999;margin-bottom:22px}
+ol{text-align:left;color:#555;font-size:14px;line-height:2;margin:0 0 22px;padding-left:22px;background:#f8f9fc;border-radius:12px;padding:16px 16px 16px 36px}
+ol b{color:#ff2d6e}
+.btn{display:block;width:100%;padding:16px;border:none;border-radius:12px;background:#ff2d6e;color:#fff;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none}
 .btn:active{opacity:.85}
-.note{margin-top:14px;font-size:12px;color:#999;line-height:1.6}
-.done{margin-top:12px;font-size:13px;color:#07c160;font-weight:600;display:none}
+.note{margin-top:16px;font-size:12px;color:#999;line-height:1.7}
+.note b{color:#333}
 </style>
 </head>
 <body>
 <div class="card">
   <div class="logo">T</div>
-  <h1>绑定 TikTok 账号授权</h1>
-  <div class="acct">本次授权账号:<b id="acct">@—</b></div>
+  <h1>绑定 TikTok 账号</h1>
+  <div class="sub">扫码授权 · 自动绑定</div>
   <ol>
-    <li>点击下方按钮,前往 AiDelly 授权页</li>
-    <li>选择 <b>TikTok</b>,并登录上面显示的账号</li>
-    <li>点击允许授权,看到成功提示即完成</li>
+    <li>点击下方按钮,前往授权页</li>
+    <li>选择 <b>TikTok</b></li>
+    <li>登录页选择 <b>扫码登录(Log in with QR code)</b></li>
+    <li>用该账号的手机 TikTok <b>扫码</b> → 允许授权</li>
   </ol>
-  <a class="btn" id="go" href="#">开始授权 →</a>
-  <div class="note">授权完成后,回到 SeaTable 表格,运行「授权检查」脚本,状态会自动变为 <b>已授权</b>。</div>
-  <div class="done" id="done">✓ 已完成授权?回表格运行检查脚本即可</div>
+  <a class="btn" href="https://app.aidelly.ai/connect/Q2ZpjrJRekIKqxkRqnYHuXq5U2DvdbkxKrleUD_T7hA">扫码授权 →</a>
+  <div class="note">授权成功后,回到 SeaTable 运行「<b>授权检查</b>」脚本,<br>账号名称和状态会<b>自动回填</b>到你点击按钮的那一行。</div>
 </div>
-<script>
-// AiDelly workspace 连接链接(通用,授权登录哪个号就绑哪个号)
-var LINK = "https://app.aidelly.ai/connect/Q2ZpjrJRekIKqxkRqnYHuXq5U2DvdbkxKrleUD_T7hA";
-var q = new URLSearchParams(location.search);
-var acct = q.get('account') || q.get('acct') || '';
-document.getElementById('acct').textContent = acct ? '@' + acct : '(未指定)';
-document.getElementById('go').href = LINK;
-if (document.referrer && document.referrer.indexOf('aidelly') > -1) {
-  document.getElementById('done').style.display = 'block';
-}
-</script>
 </body>
 </html>
